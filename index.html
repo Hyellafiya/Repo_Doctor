@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RepoDoctor — AI Repository Diagnosis</title>
+  <meta name="description" content="RepoDoctor diagnoses public GitHub repositories with evidence-based AI insights.">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#top"><span class="logo">RD</span><span>RepoDoctor</span></a>
+  <nav>
+    <a href="#diagnosis">Diagnosis</a><a href="#xray">X-Ray</a><a href="#help">AI Help</a>
+    <button id="shareBtn" class="ghost">Share</button>
+    <button id="menuBtn" class="iconBtn" aria-label="Open options" aria-expanded="false">⋮</button>
+  </nav>
+</header>
+
+<div id="drawerBackdrop" class="backdrop hidden"></div>
+<aside id="drawer" class="drawer" aria-hidden="true">
+  <div class="drawerHead"><strong>RepoDoctor options</strong><button id="closeDrawer" class="iconBtn">×</button></div>
+  <button class="drawerItem" id="copyLinkBtn">Copy RepoDoctor link</button>
+  <button class="drawerItem" id="nativeShareBtn">Share RepoDoctor</button>
+  <button class="drawerItem" id="sampleBtn">Load sample report</button>
+  <button class="drawerItem" id="clearBtn">Clear current report</button>
+  <a class="drawerItem" href="https://github.com/" target="_blank" rel="noreferrer">Open GitHub ↗</a>
+</aside>
+
+<main id="top">
+<section class="hero">
+  <div class="eyebrow">AI-POWERED REPOSITORY HEALTH</div>
+  <h1>Your code has symptoms.<br><span>RepoDoctor finds the cause.</span></h1>
+  <p>Paste a public GitHub repository and get a practical diagnosis with evidence, priorities and fixes.</p>
+  <div class="scanBox">
+    <div class="urlRow">
+      <input id="repoUrl" type="url" placeholder="https://github.com/owner/repository" autocomplete="off">
+      <button id="diagnoseBtn" class="primary">🩺 Diagnose</button>
+    </div>
+    <div class="controls">
+      <label>Scan mode
+        <select id="scanMode">
+          <option value="quick">Quick Scan</option>
+          <option value="deep">Deep Scan</option>
+          <option value="security">Security Scan</option>
+          <option value="beginner">Beginner Scan</option>
+        </select>
+      </label>
+      <span id="status" class="status">Ready to examine a repository.</span>
+    </div>
+  </div>
+  <div id="errorBox" class="error hidden"></div>
+</section>
+
+<section id="diagnosis" class="section">
+  <div class="sectionTitle"><div><span class="eyebrow">DIAGNOSIS</span><h2>Repository health report</h2></div><button id="rescanBtn" class="secondary hidden">↻ Rescan</button></div>
+  <div id="emptyState" class="empty"><div class="emptyIcon">🩺</div><h3>No diagnosis yet</h3><p>Enter a public GitHub URL above and run a scan.</p></div>
+  <div id="report" class="hidden">
+    <div class="patient grid3">
+      <div class="card scoreCard"><div class="scoreRing" id="scoreRing"><b id="score">—</b><small>/100</small></div><div><strong>Health score</strong><p id="summary">—</p></div></div>
+      <div class="card"><span class="muted">Repository</span><strong id="repoName">—</strong><span id="repoMeta">—</span></div>
+      <div class="card stats"><div><b id="dangerCount">0</b><span>Critical</span></div><div><b id="warnCount">0</b><span>Warnings</span></div><div><b id="passCount">0</b><span>Passed</span></div><div><b id="fileCount">0</b><span>Files checked</span></div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h3>Category signals</h3><div id="categories" class="chips"></div></div>
+      <div class="card"><h3>Doctor's priority</h3><ol id="priority" class="priority"></ol></div>
+    </div>
+    <div class="sectionTitle small"><h3>Evidence & prescriptions</h3><div><button id="copyReportBtn" class="secondary">Copy report</button><button id="exportBtn" class="secondary">Export Markdown</button></div></div>
+    <div id="findings" class="findings"></div>
+  </div>
+</section>
+
+<section id="xray" class="section">
+  <div class="sectionTitle"><div><span class="eyebrow">X-RAY</span><h2>Project structure</h2></div></div>
+  <div class="grid2">
+    <div class="card"><h3>Detected stack</h3><div id="stack" class="chips"><span class="chip">Waiting for scan</span></div></div>
+    <div class="card"><h3>Repository flow</h3><div id="tree" class="tree"><span>Scan a repository to inspect its structure.</span></div></div>
+  </div>
+</section>
+
+<section id="help" class="section">
+  <div class="sectionTitle"><div><span class="eyebrow">AI QUICK HELP</span><h2>Ask about your diagnosis</h2></div></div>
+  <div class="chat card">
+    <div id="chatMessages" class="messages"><div class="msg ai">Hi. Run a diagnosis first, then ask me about the findings. I’ll use the scanned repository context rather than guessing.</div></div>
+    <div class="quickPrompts">
+      <button data-q="Explain my most serious issue">Most serious issue</button>
+      <button data-q="What should I fix first?">What to fix first?</button>
+      <button data-q="How can I improve my tests?">Improve tests</button>
+      <button data-q="Explain my repository simply">Explain simply</button>
+    </div>
+    <div class="chatRow"><input id="chatInput" placeholder="Ask RepoDoctor a question..."><button id="chatSend" class="primary">Send</button></div>
+  </div>
+</section>
+</main>
+
+<footer><strong>RepoDoctor</strong> · AI-assisted repository diagnosis · Always verify findings before making changes.</footer>
+<script src="/script.js" defer></script>
+</body>
+</html>
